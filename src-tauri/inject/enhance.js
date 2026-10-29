@@ -15,14 +15,6 @@
   if (!isNotion || window.__renotion) return;
   window.__renotion = true;
 
-  // Let Notion's client-side runtime know it is running in a desktop shell
-  window.__isElectron = true;
-  window.__platform = navigator.platform.toLowerCase().includes('mac')
-    ? 'darwin'
-    : navigator.platform.toLowerCase().includes('win')
-    ? 'win32'
-    : 'linux';
-
   const css = __RENOTION_CSS__;
 
   const install = () => {
