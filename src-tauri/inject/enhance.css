@@ -1,0 +1,55 @@
+/* Injected at document-start on Notion pages only. Keep this file tiny: it is
+   evaluated by the style engine continuously while Notion updates its DOM. */
+
+/* "Get the desktop app" prompts make no sense inside a desktop app.
+   Scoped to navigation chrome so real page content is never hidden. */
+[class*="sidebar"] a[href*="/desktop"],
+[class*="topbar"] a[href*="/desktop"],
+nav a[href*="/desktop"] {
+  display: none !important;
+}
+
+/* Keep the webview's overscroll glow inside the native window. */
+html[data-renotion] {
+  overscroll-behavior: none;
+}
+
+/* Renotion offline status banner */
+#renotion-offline-pill {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(32, 32, 32, 0.92);
+  color: #f7f7f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+  cursor: default;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+#renotion-offline-pill.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#renotion-offline-pill .renotion-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #eb5757;
+  flex-shrink: 0;
+}
+
